@@ -5,7 +5,8 @@ URL shortener with click analytics.
 > 🚧 Work in progress. This README grows with the project.
 
 ## Planned features
-- [ ] User authentication (JWT)
+
+- [x] User authentication (JWT)
 - [ ] Short links with custom alias and expiry
 - [ ] Click tracking and analytics
 - [ ] React dashboard
@@ -14,6 +15,7 @@ URL shortener with click analytics.
 - [ ] Deployed demo
 
 ## Tech stack
+
 Node.js · Express · PostgreSQL · React · Docker · Jest · GitHub Actions
 
 ## Running the backend
@@ -32,6 +34,8 @@ docker exec -it linkpulse-db psql -U linkpulse -d linkpulse -c "CREATE DATABASE 
 ```bash
 cd backend
 cp .env.example .env
+# Set a real JWT_SECRET in .env. Generate one with:
+node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"
 npm install
 npm run migrate up     # create the database tables
 npm run dev            # start with auto-reload
@@ -51,5 +55,10 @@ npm run test:coverage
 Three tables: `users` → `links` → `clicks` (one user has many links, one link
 has many clicks). Migrations live in `backend/migrations/`.
 
+## API documentation
+
+See [docs/api.md](docs/api.md) for all endpoints, request and response examples, and status codes.
+
 ## License
+
 MIT
